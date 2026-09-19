@@ -1,10 +1,7 @@
-/* Sakura Store — Modern Design System (Glassmorphism & K-Culture Pink Theme) */
-
 :root {
   --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
 
-  /* Color Palette */
   --bg-primary: #0f0e17;
   --bg-surface: #181623;
   --bg-card: rgba(30, 27, 46, 0.7);
@@ -12,26 +9,22 @@
   --border-color: rgba(255, 121, 198, 0.15);
   --border-focus: #ff79c6;
 
-  /* Sakura Colors */
   --sakura-pink: #ff75a0;
   --sakura-pink-light: #ffb3c6;
   --sakura-pink-dark: #d81b60;
   --sakura-gradient: linear-gradient(135deg, #ff75a0 0%, #ff4081 50%, #9c27b0 100%);
   --sakura-glow: 0 0 20px rgba(255, 117, 160, 0.4);
 
-  /* Status Colors */
   --accent-purple: #bd93f9;
   --accent-cyan: #8be9fd;
   --accent-green: #50fa7b;
   --accent-amber: #ffb86c;
   --accent-red: #ff5555;
 
-  /* Text Colors */
   --text-primary: #f8f8f2;
   --text-secondary: #a0a0b8;
   --text-muted: #6272a4;
 
-  /* Radius & Shadows */
   --radius-sm: 8px;
   --radius-md: 14px;
   --radius-lg: 20px;
@@ -66,7 +59,6 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: -0.02em;
 }
 
-/* Glassmorphism Card Utility */
 .glass-card {
   background: var(--bg-card);
   backdrop-filter: var(--backdrop-blur);
@@ -82,7 +74,6 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: 0 12px 40px rgba(255, 117, 160, 0.15);
 }
 
-/* Base Buttons */
 .btn-sakura {
   background: var(--sakura-gradient);
   color: #fff;
@@ -128,7 +119,6 @@ h1, h2, h3, h4, h5, h6 {
   border-color: rgba(255, 255, 255, 0.3);
 }
 
-/* Badges */
 .badge {
   padding: 4px 10px;
   border-radius: 20px;
@@ -171,7 +161,6 @@ h1, h2, h3, h4, h5, h6 {
   border: 1px solid rgba(255, 85, 85, 0.3);
 }
 
-/* Custom Inputs */
 .form-group {
   margin-bottom: 18px;
   display: flex;
@@ -203,7 +192,6 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: 0 0 10px rgba(255, 121, 198, 0.25);
 }
 
-/* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }

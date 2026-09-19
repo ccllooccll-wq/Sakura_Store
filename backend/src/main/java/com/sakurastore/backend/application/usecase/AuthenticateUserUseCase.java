@@ -45,17 +45,14 @@ public class AuthenticateUserUseCase {
             throw new DomainException("Credenciales inválidas. Usuario/correo o contraseña incorrectos.");
         }
 
-        // Invalidar códigos de verificación anteriores
         emailVerificationRepositoryPort.invalidateAllPendingByUserId(user.getId());
 
-        // Generar nuevo código OTP de 6 dígitos para el inicio de sesión
         String rawCode = String.format("%06d", secureRandom.nextInt(1000000));
         String codeHash = passwordEncoderPort.encode(rawCode);
 
         EmailVerification verification = EmailVerification.create(user.getId(), codeHash, EXPIRATION_MINUTES);
         emailVerificationRepositoryPort.save(verification);
 
-        // Enviar código OTP por correo electrónico
         emailSenderPort.sendVerificationCode(user.getEmail(), user.getFullName(), rawCode);
 
         return new AuthResponseDto(true, user.getEmail(), "Se ha enviado un código de verificación de 6 dígitos a tu correo electrónico (" + user.getEmail() + ").");

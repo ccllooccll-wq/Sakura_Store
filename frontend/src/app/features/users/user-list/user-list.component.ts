@@ -14,7 +14,6 @@ import { NavbarComponent } from '../../../shared/components/navbar/navbar.compon
     <app-navbar></app-navbar>
 
     <main class="container">
-      <!-- Page Header -->
       <div class="page-header">
         <div>
           <h1>Gestión de Usuarios</h1>
@@ -26,7 +25,6 @@ import { NavbarComponent } from '../../../shared/components/navbar/navbar.compon
         </button>
       </div>
 
-      <!-- Feedback Alerts -->
       <div *ngIf="successMessage" class="alert alert-success">
         <i class="fa-solid fa-circle-check"></i>
         <span>{{ successMessage }}</span>
@@ -36,7 +34,6 @@ import { NavbarComponent } from '../../../shared/components/navbar/navbar.compon
         <span>{{ errorMessage }}</span>
       </div>
 
-      <!-- Filters & Stats Card -->
       <div class="glass-card filter-card">
         <div class="search-box">
           <i class="fa-solid fa-magnifying-glass search-icon"></i>
@@ -52,7 +49,6 @@ import { NavbarComponent } from '../../../shared/components/navbar/navbar.compon
         </div>
       </div>
 
-      <!-- Users Table Card -->
       <div class="glass-card table-card">
         <table class="sakura-table">
           <thead>
@@ -113,7 +109,6 @@ import { NavbarComponent } from '../../../shared/components/navbar/navbar.compon
       </div>
     </main>
 
-    <!-- Modal Form for Create / Edit -->
     <div class="modal-backdrop" *ngIf="showModal">
       <div class="glass-card modal-content">
         <div class="modal-header">
@@ -123,7 +118,6 @@ import { NavbarComponent } from '../../../shared/components/navbar/navbar.compon
 
         <form (ngSubmit)="saveUser()" #userForm="ngForm">
           <div class="modal-body">
-            <!-- Username (Only editable when creating) -->
             <div class="form-group" *ngIf="!isEditMode">
               <label>Nombre de Usuario *</label>
               <input
@@ -160,7 +154,6 @@ import { NavbarComponent } from '../../../shared/components/navbar/navbar.compon
               />
             </div>
 
-            <!-- Password (Only required on creation) -->
             <div class="form-group" *ngIf="!isEditMode">
               <label>Contraseña *</label>
               <input
@@ -364,7 +357,6 @@ import { NavbarComponent } from '../../../shared/components/navbar/navbar.compon
       color: #ffb86c;
     }
 
-    /* Modal Backdrop */
     .modal-backdrop {
       position: fixed;
       inset: 0;

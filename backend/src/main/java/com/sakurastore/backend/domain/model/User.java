@@ -51,7 +51,6 @@ public class User {
         return new User(null, username, fullName, email, password, role, true, false, LocalDateTime.now(), LocalDateTime.now());
     }
 
-    // Reglas de negocio y encapsulamiento
     public void markEmailAsVerified() {
         this.emailVerified = true;
         this.updatedAt = LocalDateTime.now();
@@ -90,7 +89,6 @@ public class User {
         this.updatedAt = LocalDateTime.now();
     }
 
-    // Validaciones de invariantes POO
     private void validateUsername(String username) {
         if (username == null || username.trim().isEmpty()) {
             throw new DomainException("El nombre de usuario es obligatorio.");
@@ -127,7 +125,6 @@ public class User {
         }
     }
 
-    // Getters y Setters
     public Long getId() {
         return id;
     }

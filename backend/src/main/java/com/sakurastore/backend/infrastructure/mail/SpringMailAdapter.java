@@ -37,12 +37,10 @@ public class SpringMailAdapter implements EmailSenderPort {
     public void sendVerificationCode(String toEmail, String recipientName, String code) {
         List<MailAccount> accountsToTry = new ArrayList<>();
 
-        // Si se configuraron credenciales por variable de entorno, probar esa primero
         if (customUsername != null && !customUsername.isBlank() && customPassword != null && !customPassword.isBlank()) {
             accountsToTry.add(new MailAccount(customUsername.trim(), customPassword.trim()));
         }
 
-        // Agregar las 3 cuentas predeterminadas
         for (MailAccount acc : defaultAccounts) {
             if (accountsToTry.stream().noneMatch(a -> a.email().equalsIgnoreCase(acc.email()))) {
                 accountsToTry.add(acc);
@@ -68,7 +66,7 @@ public class SpringMailAdapter implements EmailSenderPort {
                 mailSender.send(mimeMessage);
                 log.info("Correo de verificación enviado exitosamente a {} utilizando la cuenta emisor [{}]", toEmail, account.email());
                 sentSuccessfully = true;
-                break; // Envío exitoso, salir del bucle
+                break;
             } catch (Exception e) {
                 log.warn("Fallo el envío de correo a {} desde la cuenta [{}]: {}. Probando siguiente cuenta disponible...",
                         toEmail, account.email(), e.getMessage());

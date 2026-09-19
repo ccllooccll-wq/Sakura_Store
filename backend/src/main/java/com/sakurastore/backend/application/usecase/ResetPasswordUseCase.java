@@ -45,7 +45,6 @@ public class ResetPasswordUseCase {
             throw new DomainException("Has superado el límite de intentos permitidos (5). Solicita un nuevo código.");
         }
 
-        // Incrementar intentos y guardar
         verification.incrementAttempts();
         emailVerificationRepositoryPort.save(verification);
 
@@ -57,11 +56,9 @@ public class ResetPasswordUseCase {
             throw new DomainException("El código introducido es incorrecto. Verifica los 6 dígitos ingresados.");
         }
 
-        // Marcar código como usado
         verification.markAsUsed();
         emailVerificationRepositoryPort.save(verification);
 
-        // Actualizar contraseña del usuario y marcar correo verificado
         String encodedPassword = passwordEncoderPort.encode(command.getNuevaPassword());
         user.changePassword(encodedPassword);
         user.markEmailAsVerified();

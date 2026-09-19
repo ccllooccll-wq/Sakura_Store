@@ -36,7 +36,6 @@ public class UpdateUserUseCase {
         Role newRole = roleRepositoryPort.findById(command.getRoleId())
                 .orElseThrow(() -> new DomainException("El rol con ID " + command.getRoleId() + " no fue encontrado."));
 
-        // Validar si se está intentando cambiar el rol
         if (!existingUser.getRole().getId().equals(newRole.getId())) {
             if (requestorRole == null || !RoleEnum.ROLE_ADMIN.name().equalsIgnoreCase(requestorRole.trim())) {
                 throw new DomainException("Solo un Administrador tiene permisos para cambiar el rol de los usuarios.");

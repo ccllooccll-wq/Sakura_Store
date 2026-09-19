@@ -25,7 +25,6 @@ import { AuthService } from '../../../core/services/auth.service';
           </p>
         </div>
 
-        <!-- Alertas de estado -->
         <div *ngIf="successMessage" class="alert alert-success">
           <i class="fa-solid fa-circle-check icon-lg"></i>
           <div>
@@ -50,7 +49,6 @@ import { AuthService } from '../../../core/services/auth.service';
           </div>
         </div>
 
-        <!-- Formulario de verificación (si no está aún verificado) -->
         <div *ngIf="!verified">
           <div class="form-group" *ngIf="!hasPresetEmail">
             <label for="emailInput">Correo Electrónico</label>
@@ -112,7 +110,6 @@ import { AuthService } from '../../../core/services/auth.service';
           </div>
         </div>
 
-        <!-- Botón para ir a login si fue exitoso -->
         <div *ngIf="verified" class="action-success">
           <button routerLink="/login" class="btn-sakura btn-full">
             <i class="fa-solid fa-right-to-bracket"></i> Iniciar Sesión Ahora

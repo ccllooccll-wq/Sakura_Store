@@ -41,17 +41,14 @@ public class RequestPasswordResetUseCase {
             throw new DomainException("El usuario se encuentra desactivado. Por favor contacte al Administrador.");
         }
 
-        // Invalidar verificaciones pendientes previas
         emailVerificationRepositoryPort.invalidateAllPendingByUserId(user.getId());
 
-        // Generar código OTP seguro de 6 dígitos
         String rawCode = String.format("%06d", secureRandom.nextInt(1000000));
         String codeHash = passwordEncoderPort.encode(rawCode);
 
         EmailVerification verification = EmailVerification.create(user.getId(), codeHash, EXPIRATION_MINUTES);
         emailVerificationRepositoryPort.save(verification);
 
-        // Enviar código OTP por correo electrónico
         emailSenderPort.sendVerificationCode(user.getEmail(), user.getFullName(), rawCode);
 
         return new ApiResponseDto("Se ha enviado un código de verificación de 6 dígitos a tu correo electrónico (" + user.getEmail() + ").");

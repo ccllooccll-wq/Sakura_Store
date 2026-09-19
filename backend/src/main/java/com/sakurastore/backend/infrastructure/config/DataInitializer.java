@@ -24,7 +24,6 @@ public class DataInitializer implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        // Inicializar Roles
         Role adminRole = roleRepositoryPort.findByName(RoleEnum.ROLE_ADMIN)
                 .orElseGet(() -> roleRepositoryPort.save(new Role(RoleEnum.ROLE_ADMIN, "Administrador del Sistema Sakura Store")));
 
@@ -34,7 +33,6 @@ public class DataInitializer implements CommandLineRunner {
         roleRepositoryPort.findByName(RoleEnum.ROLE_ALMACENERO)
                 .orElseGet(() -> roleRepositoryPort.save(new Role(RoleEnum.ROLE_ALMACENERO, "Almacenero / Gestión de inventario")));
 
-        // Inicializar Usuario Admin por defecto si no existe
         if (!userRepositoryPort.existsByUsername("admin")) {
             String encodedPassword = passwordEncoderPort.encode("admin123");
             User adminUser = User.createNewUser(

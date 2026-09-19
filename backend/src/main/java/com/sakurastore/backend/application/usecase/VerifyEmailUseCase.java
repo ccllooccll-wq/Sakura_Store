@@ -50,7 +50,6 @@ public class VerifyEmailUseCase {
             throw new DomainException("Has superado el límite de intentos permitidos (5). Solicita un nuevo código de verificación.");
         }
 
-        // Incrementar intentos y guardar
         verification.incrementAttempts();
         emailVerificationRepositoryPort.save(verification);
 
@@ -62,7 +61,6 @@ public class VerifyEmailUseCase {
             throw new DomainException("El código introducido es incorrecto. Verifica los 6 dígitos ingresados.");
         }
 
-        // Marcar código como usado y usuario como verificado
         verification.markAsUsed();
         emailVerificationRepositoryPort.save(verification);
 

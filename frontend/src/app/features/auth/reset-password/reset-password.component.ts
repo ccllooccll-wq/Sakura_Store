@@ -27,7 +27,6 @@ import { AuthService } from '../../../core/services/auth.service';
           </p>
         </div>
 
-        <!-- Alertas de estado -->
         <div *ngIf="successMessage" class="alert alert-success">
           <i class="fa-solid fa-circle-check icon-lg"></i>
           <div>
@@ -52,7 +51,6 @@ import { AuthService } from '../../../core/services/auth.service';
           </div>
         </div>
 
-        <!-- Paso 1: Solicitar Código OTP -->
         <form *ngIf="step === 1" (ngSubmit)="onRequestCode()" #step1Form="ngForm">
           <div class="form-group">
             <label for="email">Correo Electrónico Registrado *</label>
@@ -76,7 +74,6 @@ import { AuthService } from '../../../core/services/auth.service';
           </button>
         </form>
 
-        <!-- Paso 2: Introducir Código OTP + Nueva Contraseña -->
         <form *ngIf="step === 2 && !passwordResetSuccess" (ngSubmit)="onResetPassword()" #step2Form="ngForm">
           <div class="form-group">
             <label for="code">Código OTP (6 dígitos) *</label>
@@ -150,7 +147,6 @@ import { AuthService } from '../../../core/services/auth.service';
           </div>
         </form>
 
-        <!-- Botón de éxito para ir al login -->
         <div *ngIf="passwordResetSuccess" class="action-success" style="margin-top: 20px;">
           <button routerLink="/login" class="btn-sakura btn-full">
             <i class="fa-solid fa-right-to-bracket"></i> Ir al Inicio de Sesión

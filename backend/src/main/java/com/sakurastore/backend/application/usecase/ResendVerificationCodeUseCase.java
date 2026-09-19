@@ -41,17 +41,14 @@ public class ResendVerificationCodeUseCase {
             return new ApiResponseDto("El correo electrónico ya ha sido verificado.");
         }
 
-        // Invalidar códigos de verificación previos
         emailVerificationRepositoryPort.invalidateAllPendingByUserId(user.getId());
 
-        // Generar un nuevo código OTP de 6 dígitos
         String rawCode = String.format("%06d", secureRandom.nextInt(1000000));
         String codeHash = passwordEncoderPort.encode(rawCode);
 
         EmailVerification verification = EmailVerification.create(user.getId(), codeHash, EXPIRATION_MINUTES);
         emailVerificationRepositoryPort.save(verification);
 
-        // Reenviar email
         emailSenderPort.sendVerificationCode(user.getEmail(), user.getFullName(), rawCode);
 
         return new ApiResponseDto("Se ha enviado un nuevo código de verificación.");

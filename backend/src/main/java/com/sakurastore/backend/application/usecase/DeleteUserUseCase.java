@@ -20,10 +20,7 @@ public class DeleteUserUseCase {
             throw new DomainException("El usuario con ID " + id + " no existe.");
         }
 
-        // Invalidar/eliminar verificaciones de correo asociadas
         emailVerificationRepositoryPort.invalidateAllPendingByUserId(id);
-
-        // Eliminar el usuario
         userRepositoryPort.deleteById(id);
 
         return new ApiResponseDto("Usuario eliminado exitosamente.");

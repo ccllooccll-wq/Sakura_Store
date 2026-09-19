@@ -63,17 +63,14 @@ public class RegisterUserUseCase {
 
         User savedUser = userRepositoryPort.save(newUser);
 
-        // Invalidar códigos de verificación anteriores si existiesen
         emailVerificationRepositoryPort.invalidateAllPendingByUserId(savedUser.getId());
 
-        // Generar código OTP seguro de 6 dígitos
         String rawCode = String.format("%06d", secureRandom.nextInt(1000000));
         String codeHash = passwordEncoderPort.encode(rawCode);
 
         EmailVerification verification = EmailVerification.create(savedUser.getId(), codeHash, EXPIRATION_MINUTES);
         emailVerificationRepositoryPort.save(verification);
 
-        // Enviar correo electrónico
         emailSenderPort.sendVerificationCode(savedUser.getEmail(), savedUser.getFullName(), rawCode);
 
         return new ApiResponseDto("Usuario registrado. Revisa tu correo para verificar tu cuenta.");

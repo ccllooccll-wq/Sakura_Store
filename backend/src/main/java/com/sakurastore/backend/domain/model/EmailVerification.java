@@ -68,7 +68,6 @@ public class EmailVerification {
         this.used = true;
     }
 
-    // Getters y Setters
     public Long getId() {
         return id;
     }

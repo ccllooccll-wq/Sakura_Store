@@ -19,7 +19,7 @@ public class JwtTokenProviderAdapter implements JwtTokenProviderPort {
     @Value("${app.jwt.secret:SakuraStoreSecretKeySuperSeguraConMasDe32Caracteres123456}")
     private String jwtSecret;
 
-    @Value("${app.jwt.expiration-ms:86400000}") // 24 horas por defecto
+    @Value("${app.jwt.expiration-ms:86400000}")
     private long jwtExpirationMs;
 
     private Key getSigningKey() {
