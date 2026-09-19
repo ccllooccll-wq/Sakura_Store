@@ -74,4 +74,19 @@ public class UseCaseConfig {
                                                            EmailSenderPort emailSenderPort) {
         return new AuthenticateUserUseCase(userRepositoryPort, passwordEncoderPort, emailVerificationRepositoryPort, emailSenderPort);
     }
+
+    @Bean
+    public RequestPasswordResetUseCase requestPasswordResetUseCase(UserRepositoryPort userRepositoryPort,
+                                                                   EmailVerificationRepositoryPort emailVerificationRepositoryPort,
+                                                                   EmailSenderPort emailSenderPort,
+                                                                   PasswordEncoderPort passwordEncoderPort) {
+        return new RequestPasswordResetUseCase(userRepositoryPort, emailVerificationRepositoryPort, emailSenderPort, passwordEncoderPort);
+    }
+
+    @Bean
+    public ResetPasswordUseCase resetPasswordUseCase(UserRepositoryPort userRepositoryPort,
+                                                     EmailVerificationRepositoryPort emailVerificationRepositoryPort,
+                                                     PasswordEncoderPort passwordEncoderPort) {
+        return new ResetPasswordUseCase(userRepositoryPort, emailVerificationRepositoryPort, passwordEncoderPort);
+    }
 }

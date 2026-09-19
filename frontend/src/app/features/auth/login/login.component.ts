@@ -58,6 +58,9 @@ import { AuthService } from '../../../core/services/auth.service';
                 placeholder="••••••••"
               />
             </div>
+            <div style="text-align: right; margin-top: 6px; font-size: 0.8rem;">
+              <a routerLink="/recuperar-password" style="color: #8be9fd; text-decoration: none;">¿Olvidaste tu contraseña?</a>
+            </div>
           </div>
 
           <button type="submit" class="btn-sakura btn-full" [disabled]="loading || !loginForm.valid">

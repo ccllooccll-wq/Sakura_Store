@@ -56,6 +56,14 @@ export class AuthService {
     return this.http.post<ApiResponse>(`${this.apiUrl}/auth/reenviar-codigo`, { email });
   }
 
+  requestPasswordReset(email: string): Observable<ApiResponse> {
+    return this.http.post<ApiResponse>(`${this.apiUrl}/auth/solicitar-recuperacion`, { email });
+  }
+
+  resetPassword(email: string, codigo: string, nuevaPassword: string): Observable<ApiResponse> {
+    return this.http.post<ApiResponse>(`${this.apiUrl}/auth/restablecer-password`, { email, codigo, nuevaPassword });
+  }
+
   logout(): void {
     localStorage.removeItem('sakura_token');
     localStorage.removeItem('sakura_user');
